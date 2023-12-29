@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/jaswantg98/user_service'
+                checkout([$class: 'GitSCM',
+                branches: [[name: '*/main']],
+                doGenerateSubmoduleConfigurations: false, extensions: [],
+                submoduleCfg: [],
+                userRemoteConfigs: [[url: 'https://github.com/jaswantg98/user_service']]])
             }
         }
 
